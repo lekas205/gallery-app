@@ -46,7 +46,7 @@ const showContent = (data: any) => {
   }
 
 @media (max-width: 600px) {
-    column-count: 2;
+    column-count: 1;
     column-gap: 15px;
     line-height: 1.2; 
   }

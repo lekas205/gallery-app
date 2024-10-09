@@ -92,9 +92,15 @@ const fetchRandomImages = async function () {
     }
    h1{
         color: rgb(0, 0, 61);
-        font-size: 46px !important;
+        font-size: 46px;
         span{
             opacity: 0.4;
+        }
+
+        @media screen and (max-width: 600px) {
+            width: 100%;
+            font-size: 25px;
+            width: 250px;
         }
    }
 }
