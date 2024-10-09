@@ -4,8 +4,8 @@
         </div>
         <div class="description">
             <div class="title">
-                <go-doggy-text size="large">{{ breedName }} </go-doggy-text>
-                <GoDoggyIcon icon="heart" fill="#ffffff"> </GoDoggyIcon>
+                <app-text size="large">{{ breedName }} </app-text>
+                <app-icon icon="heart" fill="#ffffff"> </app-icon>
             </div>
 
             <go-doggy-text size="paragraph" v-for="text in contents">
@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { GoDoggyImage, GoDoggyIcon, GoDoggyText } from "../atoms";
+import { AppImage, AppIcon, AppText } from "../atoms";
 
 const contents = ref([
     "  The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is a medium sized, muscular dog of around 40–55 lb. They have large heads with a thick folds of skin around the face and shoulders, and a relatively flat face with a protruding lower jaw.",

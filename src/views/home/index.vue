@@ -1,16 +1,10 @@
 <template>
     <div class="home_page">
-        <go-doggy-skeleton v-if="loading" ></go-doggy-skeleton>
+        <gallery-skeleton v-if="loading" ></gallery-skeleton>
+        <empty-state v-else-if="!loading && images.length == 0 "></empty-state>
 
-        <empty-state v-else-if="!loading && dogImages.length == 0 "></empty-state>
         <section v-else>
-            <go-doggy-text size="large">{{ searchedBreed }}</go-doggy-text>
-            <div class="filter_content" v-if="breedSubCategories.length > 1">
-                <go-doggy-button v-for="item in breedSubCategories" :variant="cactiveCtegory == item ? 'dark' : 'light'"
-                    @click="fetchByCategory(item)">{{ item }}
-                </go-doggy-button>
-            </div>
-            <contents-gallery :images="dogImages"></contents-gallery>
+            <contents-gallery :images="images"></contents-gallery>
         </section>
        
     </div>
@@ -20,48 +14,28 @@
 import { ref, onMounted, computed } from "vue";
 import { useStore } from 'vuex';
 import { key } from '../../store';
-import { GoDoggyText, GoDoggyButton } from "../../components/atoms";
+import { AppText, AppButton } from "../../components/atoms";
 import EmptyState from "@/components/organisms/EmptyState.vue";
-import GoDoggySkeleton from "@/components/molecules/GoDoggySkeleton.vue";
+import GallerySkeleton from "@/components/molecules/GallerySkeleton.vue";
 import ContentsGallery from "@/components/organisms/ContentsGallery.vue";
 
 const $store = useStore(key)
 const cactiveCtegory = ref('')
 
-const dogImages = computed(() => {
-    return $store.state.dogImages
+const images = computed(() => {
+    return $store.state.images
 })
 
-const breedSubCategories = computed(() => {
-    return $store.state.breedSubCategories
-})
-
-const searchedBreed = computed(() => {
-    return $store.state.searchedBreed
-})
 
 const loading = computed(() => {
     return $store.state.contentLoading
 })
 
-const fetchByCategory = async function (category: string) {
-    try {
-        cactiveCtegory.value = category
-        $store.dispatch('toggleLoadingStatus', true)
-        await $store.dispatch('fetchByBreedSubCategories', { breed: searchedBreed.value, category })
-        $store.dispatch('toggleLoadingStatus', false)
 
-    } catch (err) {
-        console.log(err);
-        $store.dispatch('toggleLoadingStatus', false)
-    }
-}
-
-const fetchRandomBreed = async function () {
+const fetchRandomImages = async function () {
     try {
         $store.dispatch('toggleLoadingStatus', true)
-        await $store.dispatch('fetchDogImages')
-        if (dogImages.value.length < 100) fetchRandomBreed()
+        await $store.dispatch('fetchImages')
         $store.dispatch('toggleLoadingStatus', false)
 
     } catch (err) {
@@ -71,12 +45,8 @@ const fetchRandomBreed = async function () {
 }
 
 onMounted(() => {
-    let breedImages = localStorage.getItem('breedImages')
-    if (breedImages) {
-        $store.commit('SAVE_DOG_IMAGES', JSON.parse(breedImages))
-    } else {
-
-        fetchRandomBreed()
+    if (!images.value.length) {
+        fetchRandomImages()
     }
 })
 </script>

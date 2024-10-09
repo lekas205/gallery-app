@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const loderHeight = ref(['250px', '150px', '400px', '300px', '150px', '400px', '300px', '500px', '400px', '500px',])
+const loderHeight = ref(['350px', '450px', '300px', '500px', '150px',])
 </script>
 
 <style lang="scss" scoped>
@@ -22,11 +22,11 @@ const loderHeight = ref(['250px', '150px', '400px', '300px', '150px', '400px', '
 }
 
 .go-doggy-loader {
-    -webkit-column-count: 4;
+    -webkit-column-count: 3;
     -webkit-column-gap: 10px;
-    -moz-column-count: 4;
+    -moz-column-count: 3;
     -moz-column-gap: 10px;
-    column-count: 4;
+    column-count: 3;
     column-gap: 24px;
 
     .card.is-loading {

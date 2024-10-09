@@ -1,28 +1,39 @@
 <template>
     <div class="content_gallery"> 
-        <go-doggy-image-card v-for="img in  images" :url="img"></go-doggy-image-card>
+        <gallery-image-card v-for="img in  images" :data="img" @openModal="showContent(img)"></gallery-image-card>
+        <Teleport to="body">
+            <gallery-modal v-model="showModal" :content="itemToView" @close="showModal=false" />
+        </Teleport>
     </div>
 </template>
 
 <script lang="ts" setup>
-import  GoDoggyImageCard  from "../molecules/GoDoggyImageCard.vue";
+import { ref } from "vue";
+import  GalleryImageCard  from "../molecules/GalleryImageCard.vue";
+import GalleryModal from "../molecules/GalleryModal.vue";
 
-defineProps({
-    images: {
-        type: Array,
-        required: true
-    }
-})
+defineProps<{
+    images: any[]
+}>()
+
+const itemToView = ref<any>({});
+const showModal = ref(false);
+
+const showContent = (data: any) => {
+    itemToView.value = data;
+    showModal.value = true
+}
+
 </script>
 
 <style lang="scss" scoped>
 .content_gallery {
    line-height: 1.5; 
-  -webkit-column-count: 4;
+  -webkit-column-count: 3;
   -webkit-column-gap: 10px;
-  -moz-column-count: 4;
+  -moz-column-count: 3;
   -moz-column-gap: 10px;
-  column-count: 4;
+  column-count: 3;
   column-gap: 24px;
 
 

@@ -1,23 +1,13 @@
 <template>
     <div class="empty_state">
-        <go-doggy-text size="large"> So Empty :) </go-doggy-text>
-        <go-doggy-text>Content could not be found <br> for this search </go-doggy-text>
-        <go-doggy-button @click="goBack">
-            Go Back
-        </go-doggy-button>
+        <app-text size="large"> So Empty :) </app-text>
+        <app-text>Content could not be found <br> for this search </app-text>
     </div>
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex';
-import { key } from "../../store";
-import { GoDoggyButton, GoDoggyText } from "../atoms";
+import { AppText } from "../atoms";
 
-const $store = useStore(key)
-
-const goBack =  function(){
-    $store.dispatch('resetPageContent')
-}
 </script>
 
 <style lang="scss" scoped>

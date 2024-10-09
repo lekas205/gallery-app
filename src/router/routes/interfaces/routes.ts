@@ -1,12 +1,11 @@
-interface GoDoggyRoutesStructure {
-    name: string
-    path: string
-    title?: string
+interface GalleryRoutesStructure {
+  name: string;
+  path: string;
+  title?: string;
 }
 
-export interface GoDoggyRouteLayout {
-    home: {
-        root: GoDoggyRoutesStructure,
-        details: GoDoggyRoutesStructure
-    },
+export interface galleryRouteLayout {
+  home: {
+    root: GalleryRoutesStructure;
+  };
 }

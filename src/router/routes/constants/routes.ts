@@ -1,14 +1,10 @@
-import { GoDoggyRouteLayout } from '../interfaces/routes';
+import { galleryRouteLayout } from "../interfaces/routes";
 
-export const goDoggyRoutes: GoDoggyRouteLayout = {
-    home: {
-        root: {
-            path: '/',
-            name: 'Home'
-        },
-        details: {
-            path: '/:id',
-            name: 'Details'
-        }
-    }
-}
+export const galleryRoutes: galleryRouteLayout = {
+  home: {
+    root: {
+      path: "/",
+      name: "Home",
+    },
+  },
+};

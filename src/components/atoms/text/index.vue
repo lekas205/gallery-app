@@ -29,9 +29,14 @@ const tags = markRaw([
         size: 'medium',
         tag: 'h4'
     },
+
+    {
+        size: 'semi-large',
+        tag: 'h2'
+    },
     {
         size: 'large',
-        tag: 'h2'
+        tag: 'h1'
     },
 ])
 
