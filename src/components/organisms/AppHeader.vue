@@ -34,8 +34,12 @@ import GallerySearch from "../molecules/GallerySearch.vue";
         .header_search_feild {
             width: 80vw;
             @media screen and (max-width: 600px) {
-                width: 65%;
+                width: 100%;
             }
+        }
+
+        @media screen and (max-width: 600px) {
+            padding: 0 17px;
         }
     }
 }

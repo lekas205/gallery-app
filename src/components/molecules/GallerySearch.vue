@@ -92,7 +92,6 @@ const fetchRandomImages = async function () {
     }
    h1{
         color: rgb(0, 0, 61);
-       
         font-size: 46px !important;
         span{
             opacity: 0.4;

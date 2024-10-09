@@ -1,19 +1,17 @@
 <template>
     <transition name="wagers-kit-modal-fade">
         <div v-show="modelValue" class="wagers-kit-modal wagers-kit-modal--backdrop">
-            <div class="wagers-kit-modal__dialog w-full" role="dialog" :style="{ maxWidth: '60vw' }"
-                aria-labelledby="modalTitle" aria-describedby="modalDescription">
+            <div class="wagers-kit-modal__dialog w-full" role="dialog"  aria-labelledby="modalTitle" aria-describedby="modalDescription">
                     <div class="wagers-kit-modal__dialog__header--close" aria-label="Close modal" @click="close">
                         <app-icon icon="close" fill="#ffffff" />
-                        
                     </div>
                 <section id="modalDescription" class="wagers-kit-modal__dialog__body">
-                        <app-image :src="content?.urls?.full" />
+                    <app-image :src="content?.urls?.full" />
 
-                        <div class="context">
-                            <app-text size="semi-large"> {{ content?.user?.name }} </app-text>
-                            <app-text> {{ content?.alt_description }} </app-text>
-                        </div>
+                    <div class="context">
+                        <app-text size="semi-large"> {{ content?.user?.name }} </app-text>
+                        <app-text> {{ content?.alt_description }} </app-text>
+                    </div>
                 </section>
             </div>
         </div>
@@ -74,13 +72,17 @@ watch(() => props.modelValue, () => {
     max-height: calc(100vh - 20px);
     background: #ffffff;
     min-width: 300px;
-    width: 70vw;
+    width: 60vw;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
     -ms-overflow-style: none;
     scrollbar-width: none;
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
 }
 
 .wagers-kit-modal__dialog__header {
@@ -102,18 +104,27 @@ watch(() => props.modelValue, () => {
     justify-content: center;
     border-radius: 50%;
     position: absolute;
+    z-index: 110;
     border: 1px solid #ffffff;
-
+    @media screen and (max-width: 600px) {
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%)
+    }
 }
 
 .wagers-kit-modal__dialog__body {
     position: relative;
     padding-bottom: 50px;
-
+    min-height: 350px;
     img{
         width: 100%;
         height: 70vh;
         object-fit: cover;
+
+        @media screen and (max-width: 600px) {
+            height: 100%;
+        }
     }
 
     .context{
@@ -126,6 +137,14 @@ watch(() => props.modelValue, () => {
             opacity: 0.5;
             font-weight: 600;
         }
+
+        @media screen and (max-width: 600px) {
+            padding: 0 20px;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
     }
 }
 
